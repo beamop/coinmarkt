@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="9dp">
+
+        <ImageView
+            android:id="@+id/cryptocurrency_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_monetization" />
+
+        <TextView
+            android:id="@+id/cryptocurrency_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/cryptocurrency_image"
+            android:text="Crypto"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/cryptocurrency_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cryptocurrency_name"
+            android:layout_toEndOf="@id/cryptocurrency_image"
+            android:text="symbol"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/cryptocurrency_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/cryptocurrency_symbol"
+            android:layout_marginLeft="5sp"
+            android:layout_toEndOf="@id/cryptocurrency_symbol"
+            android:text="change24h"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/cryptocurrency_sparklines"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="160dp"
+            android:layout_marginEnd="90dp"
+            android:layout_toEndOf="@+id/cryptocurrency_image"
+            android:layout_toRightOf="@id/cryptocurrency_name" />
+
+        <TextView
+            android:id="@+id/cryptocurrency_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="price"
+            android:textAlignment="textEnd"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

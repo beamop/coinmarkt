@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CoinMarkt</string>
+    <string name="tab_listings">Cryptocurrencies</string>
+    <string name="tab_exchange">Exchanges</string>
+</resources>

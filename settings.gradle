@@ -1,0 +1,2 @@
+rootProject.name='CoinMarkt'
+include ':app'
