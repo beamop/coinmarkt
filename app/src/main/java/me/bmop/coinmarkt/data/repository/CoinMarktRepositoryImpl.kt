@@ -51,7 +51,7 @@ class CoinMarktRepositoryImpl(
     private suspend fun fetchCryptocurrencies() {
         coinMarktDataSource.fetchCoinMarketCapCryptocurrency(
             1,
-            10,
+            100,
             "USD"
         )
     }

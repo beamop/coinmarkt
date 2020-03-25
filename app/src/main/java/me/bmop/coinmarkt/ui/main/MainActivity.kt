@@ -9,6 +9,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.ui.adapter.SectionsPagerAdapter
+import me.bmop.coinmarkt.ui.base.ScopeFragment
+import me.bmop.coinmarkt.ui.cryptocurrencies.CryptocurrenciesFragment
 import me.bmop.coinmarkt.ui.exchanges.ExchangesFragment
 
 class MainActivity : AppCompatActivity() {
@@ -25,19 +27,6 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-
-        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                println(tab!!.position)
-                viewPager.currentItem = tab!!.position
-            }
-        })
     }
 
 }

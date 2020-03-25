@@ -3,12 +3,18 @@ package me.bmop.coinmarkt.ui.exchanges
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_cryptocurrencies.*
 import kotlinx.android.synthetic.main.fragment_exchanges.*
+import kotlinx.android.synthetic.main.fragment_exchanges.group_loading
+import kotlinx.android.synthetic.main.fragment_exchanges.recycler_view
+import kotlinx.android.synthetic.main.fragment_exchanges.swipeRefreshLayout
 import kotlinx.coroutines.launch
 
 import me.bmop.coinmarkt.R
@@ -42,14 +48,19 @@ class ExchangesFragment : ScopeFragment(), KodeinAware {
         viewModel = ViewModelProvider(this, viewModelFactory).get(ExchangesViewModel::class.java)
 
         bindUI()
+
+        swipeRefreshLayout.setOnRefreshListener {
+            bindUI()
+        }
     }
 
     private fun bindUI() = launch {
-        val markets = viewModel.coinMarketCapExchanges.await()
+        val markets = viewModel.getExchanges()
         markets.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
+            swipeRefreshLayout.isRefreshing = false
             recycler_view.adapter = ExchangesAdapter(it)
             recycler_view.layoutManager = LinearLayoutManager(parentFragment?.context)
             recycler_view.setHasFixedSize(true)
