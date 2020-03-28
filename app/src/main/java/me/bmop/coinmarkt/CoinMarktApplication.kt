@@ -10,7 +10,9 @@ import me.bmop.coinmarkt.data.network.ConnectivityInterceptor
 import me.bmop.coinmarkt.data.network.ConnectivityInterceptorImpl
 import me.bmop.coinmarkt.data.repository.CoinMarktRepository
 import me.bmop.coinmarkt.data.repository.CoinMarktRepositoryImpl
-import me.bmop.coinmarkt.service.ApiService
+import me.bmop.coinmarkt.service.ApiConfiguration
+import me.bmop.coinmarkt.service.CoinMarketCapApiService
+import me.bmop.coinmarkt.service.CryptoControlApiService
 import me.bmop.coinmarkt.ui.cryptocurrencies.CryptocurrenciesViewModelFactory
 import me.bmop.coinmarkt.ui.exchanges.ExchangesViewModelFactory
 import org.kodein.di.Kodein
@@ -29,7 +31,8 @@ class CoinMarktApplication : Application(), KodeinAware {
         bind() from singleton { instance<CoinMarktDatabase>().coinMarketCapCryptocurrenciesDao() }
         bind() from singleton { instance<CoinMarktDatabase>().coinMarketCapExchangesDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
-        bind() from singleton { ApiService(instance()) }
+        bind() from singleton { CoinMarketCapApiService(ApiConfiguration(), instance()) }
+        bind() from singleton { CryptoControlApiService(ApiConfiguration(), instance()) }
         bind<CoinMarktDataSource>() with singleton { CoinMarktDataSourceImpl(instance()) }
         bind<CoinMarktRepository>() with singleton {
             CoinMarktRepositoryImpl(
