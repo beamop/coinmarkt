@@ -1,6 +1,5 @@
 package me.bmop.coinmarkt.ui.cryptocurrencies
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +7,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_cryptocurrencies.*
 import kotlinx.coroutines.*
 
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.ui.adapter.CryptocurrenciesAdapter
 import me.bmop.coinmarkt.ui.base.ScopeFragment
-import okhttp3.internal.notify
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance

@@ -8,11 +8,7 @@ interface CoinMarktDataSource {
     val downloadedCoinMarketCapListingsCryptocurrencies: LiveData<CoinMarketCapCryptocurrenciesResponse>
     val downloadedCoinMarketCapExchanges: LiveData<CoinMarketCapExchangesResponse>
 
-    suspend fun fetchCoinMarketCapCryptocurrency(
-        start: Int,
-        limit: Int,
-        currency: String
-    )
+    suspend fun fetchCoinMarketCapCryptocurrency()
 
     suspend fun fetchCoinMarketCapExchanges()
 }

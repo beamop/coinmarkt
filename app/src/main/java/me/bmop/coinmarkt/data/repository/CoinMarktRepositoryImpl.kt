@@ -49,11 +49,7 @@ class CoinMarktRepositoryImpl(
     }
 
     private suspend fun fetchCryptocurrencies() {
-        coinMarktDataSource.fetchCoinMarketCapCryptocurrency(
-            1,
-            100,
-            "USD"
-        )
+        coinMarktDataSource.fetchCoinMarketCapCryptocurrency()
     }
 
     override suspend fun getExchanges(): LiveData<List<CoinMarketCapExchangesEntry>> {

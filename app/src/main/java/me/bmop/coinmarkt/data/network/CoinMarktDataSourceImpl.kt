@@ -1,6 +1,5 @@
 package me.bmop.coinmarkt.data.network
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,13 +21,13 @@ class CoinMarktDataSourceImpl(
     override val downloadedCoinMarketCapExchanges: LiveData<CoinMarketCapExchangesResponse>
         get() = _downloadedCoinMarketCapExchanges
 
-    override suspend fun fetchCoinMarketCapCryptocurrency(start: Int, limit: Int, currency: String) {
+    override suspend fun fetchCoinMarketCapCryptocurrency() {
         try {
-            val fetchedCoinMarketCapCryptocurrency = coinMarketCapApiService
+            val fetchedCoinMarketCapCryptocurrencies = coinMarketCapApiService
                 .getCoinMarketCapCryptocurrencies()
                 .await()
 
-            _downloadedCoinMarketCapCryptocurrencies.postValue(fetchedCoinMarketCapCryptocurrency)
+            _downloadedCoinMarketCapCryptocurrencies.postValue(fetchedCoinMarketCapCryptocurrencies)
         } catch (e: NoConnectivityException) {
             Log.e("Connectivity", "Unable to get cryptocurrencies from the CMC API", e)
         }
