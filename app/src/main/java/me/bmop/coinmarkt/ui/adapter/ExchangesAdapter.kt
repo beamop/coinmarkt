@@ -13,6 +13,7 @@ import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlinx.android.synthetic.main.exchange_item.view.*
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cmc.exchanges.CoinMarketCapExchangesEntry
+import org.w3c.dom.Text
 
 const val CMC_EXCHANGE_STATIC_ENDPOINT = "https://s2.coinmarketcap.com/static/img/exchanges/64x64/"
 const val CMC_EXCHANGE_GENERATED_SPARKLINES_ENDPOINT = "https://s2.coinmarketcap.com/generated/sparklines/exchanges/web/"
@@ -20,6 +21,9 @@ const val CMC_EXCHANGE_GENERATED_SPARKLINES_ENDPOINT = "https://s2.coinmarketcap
 class ExchangesAdapter(
     private val exchangesList: List<CoinMarketCapExchangesEntry>
 ) : RecyclerView.Adapter<ExchangesAdapter.ExchangesViewHolder>() {
+
+    private val greenColor = Color.rgb(0, 158, 115)
+    private val redColor = Color.rgb(217, 64, 64)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.exchange_item, parent, false)
@@ -37,16 +41,13 @@ class ExchangesAdapter(
             .into(holder.exchangeImage)
         Picasso.get()
             .load(coinSparklinesUrl)
-            .transform(ColorFilterTransformation(Color.rgb(0, 158, 115)))
+            .transform(if (currentItem.quote.usd.percentChangeVolume24h < 0) ColorFilterTransformation(redColor) else ColorFilterTransformation(greenColor))
             .into(holder.exchangeSparklines)
 
         holder.exchangeName.text = currentItem.name
+        holder.exchangeSlug.text = currentItem.slug
 
-        if (currentItem.quote.usd.percentChangeVolume24h < 0) {
-            holder.exchangeChange24h.setTextColor(Color.rgb(217, 64, 64))
-        } else {
-            holder.exchangeChange24h.setTextColor(Color.rgb(0, 158, 115))
-        }
+        holder.exchangeChange24h.setTextColor(if (currentItem.quote.usd.percentChangeVolume24h < 0) redColor else greenColor)
 
         holder.exchangeChange24h.text = currentItem.quote.usd.percentChangeVolume24h.toString().plus("%")
 
@@ -58,6 +59,7 @@ class ExchangesAdapter(
     class ExchangesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val exchangeImage: ImageView = itemView.exchange_image
         val exchangeName: TextView = itemView.exchange_name
+        val exchangeSlug: TextView = itemView.exchange_slug
         val exchangeChange24h: TextView = itemView.exchange_change24h
         val exchangeSparklines: ImageView = itemView.exchange_sparklines
         val exchangePrice: TextView = itemView.exchange_volume

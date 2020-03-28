@@ -21,6 +21,9 @@ class CryptocurrenciesAdapter(
     private val cryptocurrenciesList: List<CoinMarketCapCryptocurrenciesEntry>
 ) : RecyclerView.Adapter<CryptocurrenciesAdapter.CryptocurrenciesViewHolder>() {
 
+    private val greenColor = Color.rgb(0, 158, 115)
+    private val redColor = Color.rgb(217, 64, 64)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptocurrenciesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cryptocurrency_item, parent, false)
 
@@ -37,17 +40,13 @@ class CryptocurrenciesAdapter(
             .into(holder.cryptocurrencyImage)
         Picasso.get()
             .load(coinSparklinesUrl)
-            .transform(ColorFilterTransformation(Color.rgb(0, 158, 115)))
+            .transform(if (currentItem.quote.usd.percentChange24h < 0) ColorFilterTransformation(redColor) else ColorFilterTransformation(greenColor))
             .into(holder.cryptocurrencySparklines)
 
         holder.cryptocurrencyName.text = currentItem.name
         holder.cryptocurrencySymbol.text = currentItem.symbol
 
-        if (currentItem.quote.usd.percentChange24h < 0) {
-            holder.cryptocurrencyChange24h.setTextColor(Color.rgb(217, 64, 64))
-        } else {
-            holder.cryptocurrencyChange24h.setTextColor(Color.rgb(0, 158, 115))
-        }
+        holder.cryptocurrencyChange24h.setTextColor(if (currentItem.quote.usd.percentChange24h < 0) redColor else greenColor)
 
         holder.cryptocurrencyChange24h.text = currentItem.quote.usd.percentChange24h.toString().plus("%")
 
