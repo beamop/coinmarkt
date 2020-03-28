@@ -27,11 +27,21 @@
             android:text="Exchange" />
 
         <TextView
-            android:id="@+id/exchange_change24h"
+            android:id="@+id/exchange_slug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/exchange_name"
-            android:layout_alignLeft="@id/exchange_name"
+            android:layout_toEndOf="@id/exchange_image"
+            android:text="slug"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/exchange_change24h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/exchange_slug"
+            android:layout_marginLeft="5sp"
+            android:layout_toRightOf="@id/exchange_slug"
             android:textSize="15sp"
             android:textStyle="bold"
             android:text="change24h" />
