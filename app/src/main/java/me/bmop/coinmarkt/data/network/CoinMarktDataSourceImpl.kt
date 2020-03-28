@@ -1,15 +1,16 @@
 package me.bmop.coinmarkt.data.network
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import me.bmop.coinmarkt.data.network.response.CoinMarketCapCryptocurrenciesResponse
 import me.bmop.coinmarkt.data.network.response.CoinMarketCapExchangesResponse
 import me.bmop.coinmarkt.internal.NoConnectivityException
-import me.bmop.coinmarkt.service.ApiService
+import me.bmop.coinmarkt.service.CoinMarketCapApiService
 
 class CoinMarktDataSourceImpl(
-    private val apiService: ApiService
+    private val coinMarketCapApiService: CoinMarketCapApiService
 ) : CoinMarktDataSource {
 
     private val _downloadedCoinMarketCapCryptocurrencies = MutableLiveData<CoinMarketCapCryptocurrenciesResponse>()
@@ -23,8 +24,8 @@ class CoinMarktDataSourceImpl(
 
     override suspend fun fetchCoinMarketCapCryptocurrency(start: Int, limit: Int, currency: String) {
         try {
-            val fetchedCoinMarketCapCryptocurrency = apiService
-                .getCoinMarketCapListings(start, limit, currency)
+            val fetchedCoinMarketCapCryptocurrency = coinMarketCapApiService
+                .getCoinMarketCapCryptocurrencies()
                 .await()
 
             _downloadedCoinMarketCapCryptocurrencies.postValue(fetchedCoinMarketCapCryptocurrency)
@@ -35,7 +36,7 @@ class CoinMarktDataSourceImpl(
 
     override suspend fun fetchCoinMarketCapExchanges() {
         try {
-            val fetchedCoinMarketCapExchanges = apiService
+            val fetchedCoinMarketCapExchanges = coinMarketCapApiService
                 .getCoinMarketCapExchanges()
                 .await()
 
