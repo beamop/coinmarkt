@@ -7,10 +7,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-const val CMC_API_ENDPOINT  = "EDIT_ME"
-const val CMC_API_KEY       = "EDIT_ME"
 const val CC_API_ENDPOINT   = "EDIT_ME"
 const val CC_API_KEY        = "EDIT_ME"
+const val CGK_API_ENDPOINT  = "https://api.coingecko.com/api/v3/"
 
 class ApiConfiguration {
 
