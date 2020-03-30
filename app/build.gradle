@@ -69,6 +69,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'jp.wasabeef:picasso-transformations:2.2.1'
     implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.robinhood.spark:spark:1.2.0'
 
     testImplementation 'junit:junit:4.12'
     testImplementation "androidx.room:room-testing:$room_version"

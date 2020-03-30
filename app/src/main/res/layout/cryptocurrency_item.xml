@@ -40,21 +40,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/cryptocurrency_symbol"
-            android:layout_marginLeft="5sp"
+            android:layout_marginStart="5sp"
             android:layout_toEndOf="@id/cryptocurrency_symbol"
             android:text="change24h"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/cryptocurrency_sparklines"
+        <com.robinhood.spark.SparkView
+            android:id="@+id/cryptocurrency_sparkview"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="160dp"
             android:layout_marginEnd="90dp"
-            android:layout_toEndOf="@+id/cryptocurrency_image"
-            android:layout_toRightOf="@id/cryptocurrency_name" />
+            android:layout_toEndOf="@+id/cryptocurrency_image" />
 
         <TextView
             android:id="@+id/cryptocurrency_price"

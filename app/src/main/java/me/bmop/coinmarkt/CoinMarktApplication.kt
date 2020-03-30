@@ -4,14 +4,14 @@ import android.app.Application
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import me.bmop.coinmarkt.data.db.CoinMarktDatabase
-import me.bmop.coinmarkt.data.network.CoinMarktDataSource
-import me.bmop.coinmarkt.data.network.CoinMarktDataSourceImpl
+import me.bmop.coinmarkt.data.network.CoinGeckoDataSource
+import me.bmop.coinmarkt.data.network.CoinGeckoDataSourceImpl
 import me.bmop.coinmarkt.data.network.ConnectivityInterceptor
 import me.bmop.coinmarkt.data.network.ConnectivityInterceptorImpl
-import me.bmop.coinmarkt.data.repository.CoinMarktRepository
-import me.bmop.coinmarkt.data.repository.CoinMarktRepositoryImpl
+import me.bmop.coinmarkt.data.repository.CoinGeckoRepository
+import me.bmop.coinmarkt.data.repository.CoinGeckoRepositoryImpl
 import me.bmop.coinmarkt.service.ApiConfiguration
-import me.bmop.coinmarkt.service.CoinMarketCapApiService
+import me.bmop.coinmarkt.service.CoinGeckoApiService
 import me.bmop.coinmarkt.service.CryptoControlApiService
 import me.bmop.coinmarkt.ui.cryptocurrencies.CryptocurrenciesViewModelFactory
 import me.bmop.coinmarkt.ui.exchanges.ExchangesViewModelFactory
@@ -28,14 +28,14 @@ class CoinMarktApplication : Application(), KodeinAware {
         import(androidXModule(this@CoinMarktApplication))
 
         bind() from singleton { CoinMarktDatabase(instance()) }
-        bind() from singleton { instance<CoinMarktDatabase>().coinMarketCapCryptocurrenciesDao() }
-        bind() from singleton { instance<CoinMarktDatabase>().coinMarketCapExchangesDao() }
+        bind() from singleton { instance<CoinMarktDatabase>().coinGeckoCryptocurrenciesDao() }
+        bind() from singleton { instance<CoinMarktDatabase>().coinGeckoExchangesDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
-        bind() from singleton { CoinMarketCapApiService(ApiConfiguration(), instance()) }
+        bind() from singleton { CoinGeckoApiService(ApiConfiguration(), instance()) }
         bind() from singleton { CryptoControlApiService(ApiConfiguration(), instance()) }
-        bind<CoinMarktDataSource>() with singleton { CoinMarktDataSourceImpl(instance()) }
-        bind<CoinMarktRepository>() with singleton {
-            CoinMarktRepositoryImpl(
+        bind<CoinGeckoDataSource>() with singleton { CoinGeckoDataSourceImpl(instance()) }
+        bind<CoinGeckoRepository>() with singleton {
+            CoinGeckoRepositoryImpl(
                 instance(),
                 instance(),
                 instance()

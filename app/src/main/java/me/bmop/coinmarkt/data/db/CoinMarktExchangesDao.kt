@@ -5,13 +5,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import me.bmop.coinmarkt.data.db.entity.cmc.exchanges.CoinMarketCapExchangesEntry
+import me.bmop.coinmarkt.data.db.entity.cgk.exchanges.CoinGeckoExchangesEntry
 
 @Dao
 interface CoinMarktExchangesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsertCoinMarketCapExchanges(exchange: List<CoinMarketCapExchangesEntry>)
+    fun upsertCoinGeckoExchanges(exchange: List<CoinGeckoExchangesEntry>)
 
-    @Query(value = "select * from coinmarkt_cmc_exchanges")
-    fun getCoinMarketCapExchanges(): LiveData<List<CoinMarketCapExchangesEntry>>
+    @Query(value = "select * from coinmarkt_cgk_exchanges")
+    fun getCoinGeckoExchanges(): LiveData<List<CoinGeckoExchangesEntry>>
 }

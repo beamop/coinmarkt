@@ -2,16 +2,15 @@ package me.bmop.coinmarkt.ui.exchanges
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import me.bmop.coinmarkt.data.db.entity.cmc.exchanges.CoinMarketCapExchangesEntry
-import me.bmop.coinmarkt.data.repository.CoinMarktRepository
-import me.bmop.coinmarkt.internal.lazyDeferred
+import me.bmop.coinmarkt.data.db.entity.cgk.exchanges.CoinGeckoExchangesEntry
+import me.bmop.coinmarkt.data.repository.CoinGeckoRepository
 
 class ExchangesViewModel(
-    private val coinMarktRepository: CoinMarktRepository
+    private val coinGeckoRepository: CoinGeckoRepository
 ) : ViewModel() {
 
-    suspend fun getExchanges(): LiveData<List<CoinMarketCapExchangesEntry>> {
-        return coinMarktRepository.getExchanges()
+    suspend fun getExchanges(): LiveData<List<CoinGeckoExchangesEntry>> {
+        return coinGeckoRepository.getExchanges()
     }
 
 }

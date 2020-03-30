@@ -1,17 +1,14 @@
 package me.bmop.coinmarkt.data.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import me.bmop.coinmarkt.data.db.entity.cmc.cryptocurrencies.CoinMarketCapCryptocurrenciesEntry
+import androidx.room.*
+import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
 
 @Dao
 interface CoinMarktCryptocurrenciesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsertCoinMarketCapCryptocurrencies(coin: List<CoinMarketCapCryptocurrenciesEntry>)
+    fun upsertCoinGeckoCryptocurrencies(coin: List<CoinGeckoCryptocurrenciesEntry>)
 
-    @Query(value = "select * from coinmarkt_cmc_cryptocurrency order by cmcRank")
-    fun getCoinMarketCapCryptocurrencies(): LiveData<List<CoinMarketCapCryptocurrenciesEntry>>
+    @Query(value = "select * from coinmarkt_cgk_cryptocurrency")
+    fun getCoinGeckoCryptocurrencies(): LiveData<List<CoinGeckoCryptocurrenciesEntry>>
 }

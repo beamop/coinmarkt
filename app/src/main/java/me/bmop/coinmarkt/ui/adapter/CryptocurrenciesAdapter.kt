@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.robinhood.spark.SparkAdapter
+import com.robinhood.spark.SparkView
+import com.robinhood.spark.animation.MorphSparkAnimator
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlinx.android.synthetic.main.cryptocurrency_item.view.*
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.data.db.entity.cmc.cryptocurrencies.CoinMarketCapCryptocurrenciesEntry
+import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
 import kotlin.math.round
 
-const val CMC_CRYPTOCURRENCY_STATIC_ENDPOINT = "https://s2.coinmarketcap.com/static/img/coins/64x64/"
-const val CMC_CRYPTOCURRENCY_GENERATED_SPARKLINES_ENDPOINT = "https://s2.coinmarketcap.com/generated/sparklines/web/"
-
 class CryptocurrenciesAdapter(
-    private val cryptocurrenciesList: List<CoinMarketCapCryptocurrenciesEntry>
+    private val cryptocurrenciesList: List<CoinGeckoCryptocurrenciesEntry>
 ) : RecyclerView.Adapter<CryptocurrenciesAdapter.CryptocurrenciesViewHolder>() {
 
     private val greenColor = Color.rgb(0, 158, 115)
@@ -32,25 +32,20 @@ class CryptocurrenciesAdapter(
 
     override fun onBindViewHolder(holder: CryptocurrenciesViewHolder, position: Int) {
         val currentItem = cryptocurrenciesList[position]
-        val coinImageUrl = CMC_CRYPTOCURRENCY_STATIC_ENDPOINT + "${currentItem.id}.png"
-        val coinSparklinesUrl = CMC_CRYPTOCURRENCY_GENERATED_SPARKLINES_ENDPOINT + "7d/usd/${currentItem.id}.png"
 
         Picasso.get()
-            .load(coinImageUrl)
+            .load(currentItem.image)
             .into(holder.cryptocurrencyImage)
-        Picasso.get()
-            .load(coinSparklinesUrl)
-            .transform(if (currentItem.quote.usd.percentChange24h < 0) ColorFilterTransformation(redColor) else ColorFilterTransformation(greenColor))
-            .into(holder.cryptocurrencySparklines)
+
+        holder.cryptocurrencyChange24h.setTextColor(if (currentItem.priceChange24h < 0) redColor else greenColor)
+
+        holder.cryptocurrencySparklineIn7d.adapter = SparkViewAdapter(currentItem.sparklineIn7d.price)
+        holder.cryptocurrencySparklineIn7d.lineColor = if (currentItem.priceChange24h < 0) redColor else greenColor
 
         holder.cryptocurrencyName.text = currentItem.name
         holder.cryptocurrencySymbol.text = currentItem.symbol
-
-        holder.cryptocurrencyChange24h.setTextColor(if (currentItem.quote.usd.percentChange24h < 0) redColor else greenColor)
-
-        holder.cryptocurrencyChange24h.text = currentItem.quote.usd.percentChange24h.toString().plus("%")
-
-        holder.cryptocurrencyPrice.text = "$".plus(currentItem.quote.usd.price.round(3))
+        holder.cryptocurrencyChange24h.text = currentItem.priceChange24h.toString().plus("%")
+        holder.cryptocurrencyPrice.text = "$".plus(currentItem.currentPrice)
     }
 
     override fun getItemCount() = cryptocurrenciesList.size
@@ -60,14 +55,8 @@ class CryptocurrenciesAdapter(
         val cryptocurrencyName: TextView = itemView.cryptocurrency_name
         val cryptocurrencySymbol: TextView = itemView.cryptocurrency_symbol
         val cryptocurrencyChange24h: TextView = itemView.cryptocurrency_change
-        val cryptocurrencySparklines: ImageView = itemView.cryptocurrency_sparklines
+        val cryptocurrencySparklineIn7d: SparkView = itemView.cryptocurrency_sparkview
         val cryptocurrencyPrice: TextView = itemView.cryptocurrency_price
     }
 
-}
-
-fun Double.round(decimals: Int): Double {
-    var multiplier = 1.0
-    repeat(decimals) { multiplier *= 10 }
-    return round(this * multiplier) / multiplier
 }

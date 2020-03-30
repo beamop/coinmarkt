@@ -7,19 +7,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlinx.android.synthetic.main.exchange_item.view.*
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.data.db.entity.cmc.exchanges.CoinMarketCapExchangesEntry
-import org.w3c.dom.Text
-
-const val CMC_EXCHANGE_STATIC_ENDPOINT = "https://s2.coinmarketcap.com/static/img/exchanges/64x64/"
-const val CMC_EXCHANGE_GENERATED_SPARKLINES_ENDPOINT = "https://s2.coinmarketcap.com/generated/sparklines/exchanges/web/"
+import me.bmop.coinmarkt.data.db.entity.cgk.exchanges.CoinGeckoExchangesEntry
 
 class ExchangesAdapter(
-    private val exchangesList: List<CoinMarketCapExchangesEntry>
+    private val exchangesList: List<CoinGeckoExchangesEntry>
 ) : RecyclerView.Adapter<ExchangesAdapter.ExchangesViewHolder>() {
 
     private val greenColor = Color.rgb(0, 158, 115)
@@ -33,25 +28,19 @@ class ExchangesAdapter(
 
     override fun onBindViewHolder(holder: ExchangesViewHolder, position: Int) {
         val currentItem = exchangesList[position]
-        val coinImageUrl = CMC_EXCHANGE_STATIC_ENDPOINT + "${currentItem.id}.png"
-        val coinSparklinesUrl = CMC_EXCHANGE_GENERATED_SPARKLINES_ENDPOINT + "7d/usd/${currentItem.id}.png"
 
         Picasso.get()
-            .load(coinImageUrl)
+            .load(currentItem.image)
             .into(holder.exchangeImage)
-        Picasso.get()
-            .load(coinSparklinesUrl)
-            .transform(if (currentItem.quote.usd.percentChangeVolume24h < 0) ColorFilterTransformation(redColor) else ColorFilterTransformation(greenColor))
-            .into(holder.exchangeSparklines)
 
+        holder.exchangeChange24h.setTextColor(if (currentItem.tradeVolume24hBtc < 0) redColor else greenColor)
+
+        if (currentItem.trustScore >= 8) holder.exchangeIsRecommended.visibility = View.VISIBLE else holder.exchangeIsRecommended.visibility = View.GONE
+
+        holder.exchangeChange24h.text = currentItem.tradeVolume24hBtcNormalized.toString().plus("%")
         holder.exchangeName.text = currentItem.name
-        holder.exchangeSlug.text = currentItem.slug
+        holder.exchangeTrustScore.text = currentItem.trustScore.toString().plus("/10")
 
-        holder.exchangeChange24h.setTextColor(if (currentItem.quote.usd.percentChangeVolume24h < 0) redColor else greenColor)
-
-        holder.exchangeChange24h.text = currentItem.quote.usd.percentChangeVolume24h.toString().plus("%")
-
-        holder.exchangePrice.text = "$".plus(String.format("%.2fBd", currentItem.quote.usd.volume7d / 1000000000.0))
     }
 
     override fun getItemCount() = exchangesList.size
@@ -59,10 +48,10 @@ class ExchangesAdapter(
     class ExchangesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val exchangeImage: ImageView = itemView.exchange_image
         val exchangeName: TextView = itemView.exchange_name
-        val exchangeSlug: TextView = itemView.exchange_slug
+        val exchangeTrustScore: TextView = itemView.exchange_trustScore
         val exchangeChange24h: TextView = itemView.exchange_change24h
-        val exchangeSparklines: ImageView = itemView.exchange_sparklines
-        val exchangePrice: TextView = itemView.exchange_volume
+        //val exchangeSparklines: ImageView = itemView.exchange_sparklines
+        val exchangeIsRecommended: ImageView = itemView.exchange_isRecommended
     }
 
 }
