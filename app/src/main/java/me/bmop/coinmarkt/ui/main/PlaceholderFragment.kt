@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import me.bmop.coinmarkt.R
 
-/**
- * A placeholder fragment containing a simple view.
- */
 class PlaceholderFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
