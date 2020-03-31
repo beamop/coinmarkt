@@ -1,25 +1,22 @@
-package me.bmop.coinmarkt.ui.exchanges
+package me.bmop.coinmarkt.ui.fragment.cgk.exchanges
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_cryptocurrencies.*
-import kotlinx.android.synthetic.main.fragment_exchanges.*
 import kotlinx.android.synthetic.main.fragment_exchanges.group_loading
 import kotlinx.android.synthetic.main.fragment_exchanges.recycler_view
 import kotlinx.android.synthetic.main.fragment_exchanges.swipeRefreshLayout
 import kotlinx.coroutines.launch
 
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.ui.adapter.ExchangesAdapter
+import me.bmop.coinmarkt.ui.adapter.cgk.ExchangesAdapter
 import me.bmop.coinmarkt.ui.base.ScopeFragment
+import me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges.ExchangesViewModel
+import me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges.ExchangesViewModelFactory
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -55,11 +52,12 @@ class ExchangesFragment : ScopeFragment(), KodeinAware {
     }
 
     private fun bindUI() = launch {
-        val markets = viewModel.getExchanges()
-        markets.observe(viewLifecycleOwner, Observer {
+        val exchanges = viewModel.getExchanges()
+        exchanges.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
-            recycler_view.adapter = ExchangesAdapter(it.toList())
+            recycler_view.adapter =
+                ExchangesAdapter(it.toList())
             recycler_view.layoutManager = LinearLayoutManager(parentFragment?.context)
             recycler_view.setHasFixedSize(true)
             group_loading.visibility = View.GONE

@@ -1,8 +1,9 @@
-package me.bmop.coinmarkt.data.network
+package me.bmop.coinmarkt.data.network.datasource.cgk
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import me.bmop.coinmarkt.data.network.datasource.cgk.CoinGeckoDataSource
 import me.bmop.coinmarkt.data.network.response.cgk.CoinGeckoCryptocurrenciesResponse
 import me.bmop.coinmarkt.data.network.response.cgk.CoinGeckoExchangesResponse
 import me.bmop.coinmarkt.internal.NoConnectivityException

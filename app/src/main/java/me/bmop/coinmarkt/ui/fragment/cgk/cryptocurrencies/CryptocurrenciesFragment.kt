@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.cryptocurrencies
+package me.bmop.coinmarkt.ui.fragment.cgk.cryptocurrencies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.fragment_cryptocurrencies.*
 import kotlinx.coroutines.*
 
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.ui.adapter.CryptocurrenciesAdapter
+import me.bmop.coinmarkt.ui.adapter.cgk.CryptocurrenciesAdapter
 import me.bmop.coinmarkt.ui.base.ScopeFragment
+import me.bmop.coinmarkt.ui.viewmodel.cgk.cryptocurrencies.CryptocurrenciesViewModel
+import me.bmop.coinmarkt.ui.viewmodel.cgk.cryptocurrencies.CryptocurrenciesViewModelFactory
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -48,11 +50,12 @@ class CryptocurrenciesFragment : ScopeFragment(), KodeinAware {
     }
 
     private fun bindUI() = launch {
-        val markets = viewModel.getCryptocurrencies()
-        markets.observe(viewLifecycleOwner, Observer {
+        val cryptocurrencies = viewModel.getCryptocurrencies()
+        cryptocurrencies.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
-            recycler_view.adapter = CryptocurrenciesAdapter(it.toList())
+            recycler_view.adapter =
+                CryptocurrenciesAdapter(it.toList())
             recycler_view.layoutManager = LinearLayoutManager(parentFragment?.context)
             recycler_view.setHasFixedSize(true)
             group_loading.visibility = View.GONE

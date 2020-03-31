@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.data.db
+package me.bmop.coinmarkt.data.db.dao.cgk
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -8,9 +8,9 @@ import androidx.room.Query
 import me.bmop.coinmarkt.data.db.entity.cgk.exchanges.CoinGeckoExchangesEntry
 
 @Dao
-interface CoinMarktExchangesDao {
+interface CoinGeckoExchangesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsertCoinGeckoExchanges(exchange: List<CoinGeckoExchangesEntry>)
+    fun upsertCoinGeckoExchanges(exchanges: List<CoinGeckoExchangesEntry>)
 
     @Query(value = "select * from coinmarkt_cgk_exchanges")
     fun getCoinGeckoExchanges(): LiveData<List<CoinGeckoExchangesEntry>>

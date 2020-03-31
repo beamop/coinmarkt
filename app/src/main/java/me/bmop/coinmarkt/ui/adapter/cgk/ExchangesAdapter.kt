@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.adapter
+package me.bmop.coinmarkt.ui.adapter.cgk
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlinx.android.synthetic.main.exchange_item.view.*
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.exchanges.CoinGeckoExchangesEntry
@@ -23,7 +22,9 @@ class ExchangesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.exchange_item, parent, false)
 
-        return ExchangesViewHolder(itemView = itemView)
+        return ExchangesViewHolder(
+            itemView = itemView
+        )
     }
 
     override fun onBindViewHolder(holder: ExchangesViewHolder, position: Int) {

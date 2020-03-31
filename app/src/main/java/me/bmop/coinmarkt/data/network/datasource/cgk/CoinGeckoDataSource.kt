@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.data.network
+package me.bmop.coinmarkt.data.network.datasource.cgk
 
 import androidx.lifecycle.LiveData
 import me.bmop.coinmarkt.data.network.response.cgk.CoinGeckoCryptocurrenciesResponse

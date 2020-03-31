@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.adapter
+package me.bmop.coinmarkt.ui.adapter.cgk
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -7,15 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.robinhood.spark.SparkAdapter
 import com.robinhood.spark.SparkView
-import com.robinhood.spark.animation.MorphSparkAnimator
 import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.ColorFilterTransformation
 import kotlinx.android.synthetic.main.cryptocurrency_item.view.*
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
-import kotlin.math.round
 
 class CryptocurrenciesAdapter(
     private val cryptocurrenciesList: List<CoinGeckoCryptocurrenciesEntry>
@@ -27,7 +23,9 @@ class CryptocurrenciesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptocurrenciesViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.cryptocurrency_item, parent, false)
 
-        return CryptocurrenciesViewHolder(itemView = itemView)
+        return CryptocurrenciesViewHolder(
+            itemView = itemView
+        )
     }
 
     override fun onBindViewHolder(holder: CryptocurrenciesViewHolder, position: Int) {
@@ -39,7 +37,8 @@ class CryptocurrenciesAdapter(
 
         holder.cryptocurrencyChange24h.setTextColor(if (currentItem.priceChange24h < 0) redColor else greenColor)
 
-        holder.cryptocurrencySparklineIn7d.adapter = SparkViewAdapter(currentItem.sparklineIn7d.price)
+        holder.cryptocurrencySparklineIn7d.adapter =
+            SparkViewAdapter(currentItem.sparklineIn7d.price)
         holder.cryptocurrencySparklineIn7d.lineColor = if (currentItem.priceChange24h < 0) redColor else greenColor
 
         holder.cryptocurrencyName.text = currentItem.name

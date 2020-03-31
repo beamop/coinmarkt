@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.data.repository
+package me.bmop.coinmarkt.data.repository.cgk
 
 import androidx.lifecycle.LiveData
 import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
