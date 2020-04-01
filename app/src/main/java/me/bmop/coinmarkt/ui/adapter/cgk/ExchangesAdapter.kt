@@ -1,14 +1,18 @@
 package me.bmop.coinmarkt.ui.adapter.cgk
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.exchange_item.view.*
+import listen
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.exchanges.CoinGeckoExchangesEntry
 
@@ -24,7 +28,12 @@ class ExchangesAdapter(
 
         return ExchangesViewHolder(
             itemView = itemView
-        )
+        ).listen { position, type ->
+            val item = exchangesList[position]
+            val exchangeUrl = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
+
+            startActivity(itemView.context, exchangeUrl, null)
+        }
     }
 
     override fun onBindViewHolder(holder: ExchangesViewHolder, position: Int) {
