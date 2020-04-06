@@ -1,18 +1,21 @@
 package me.bmop.coinmarkt.ui.activity
 
-import android.animation.Animator
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.robinhood.spark.SparkView.OnScrubListener
-import com.robinhood.spark.animation.MorphSparkAnimator
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cryptocurrency_info.*
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
 import me.bmop.coinmarkt.ui.adapter.cgk.CryptocurrenciesAdapter
-import me.bmop.coinmarkt.ui.adapter.cgk.SparkViewAdapter
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CryptocurrencyInfoActivity : AppCompatActivity() {
@@ -24,16 +27,24 @@ class CryptocurrencyInfoActivity : AppCompatActivity() {
         intent?.let {
             val cryptocurrencyInfo = intent.extras?.getParcelable(CryptocurrenciesAdapter.CRYPTOCURRENCY) as CoinGeckoCryptocurrenciesEntry?
             val locale = Locale.FRANCE
+            val entries = ArrayList<Entry>()
 
             if (cryptocurrencyInfo != null) {
                 Picasso.get()
                     .load(cryptocurrencyInfo.image)
                     .into(cryptocurrency_image)
 
-                cryptocurrency_sparkview.adapter = SparkViewAdapter(cryptocurrencyInfo.sparklineIn7d.price)
-                cryptocurrency_sparkview.scrubListener = OnScrubListener { value ->
-                    if (value !== null) cryptocurrency_spark_price.text = "$".plus(value)
+                cryptocurrencyInfo.sparklineIn7d.price.forEachIndexed { index, d ->
+                    entries.add(Entry(index.toFloat(), d.toFloat()))
                 }
+                val dataSet = LineDataSet(entries, cryptocurrencyInfo.name.plus(" prices"))
+                dataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+                dataSet.setDrawFilled(true)
+                dataSet.setDrawCircles(false)
+                dataSet.lineWidth = 2f
+                cryptocurrency_chart.data = LineData(dataSet)
+                cryptocurrency_chart.invalidate()
+
                 cryptocurrency_low_24h.text = "$".plus(cryptocurrencyInfo.low24h)
                 cryptocurrency_high_24h.text = "$".plus(cryptocurrencyInfo.high24h)
                 cryptocurrency_name.text = cryptocurrencyInfo.name.plus(" (".plus(cryptocurrencyInfo.symbol.toUpperCase().plus(")")))

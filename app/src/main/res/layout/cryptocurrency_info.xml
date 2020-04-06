@@ -4,16 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/cryptocurrency_high_24h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="55dp"
         android:text="crypto_high_24h"
         android:textColor="#66BB6A"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -22,9 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="55dp"
         android:text="crypto_low_24h"
         android:textColor="#EF5350"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -50,13 +55,10 @@
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-    <com.robinhood.spark.SparkView
-        android:id="@+id/cryptocurrency_sparkview"
-        android:layout_width="wrap_content"
-        android:layout_height="300sp"
-        android:layout_toEndOf="@+id/cryptocurrency_image"
-        app:layout_editor_absoluteY="5dp"
-        app:spark_scrubEnabled="true" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/cryptocurrency_chart"
+        android:layout_width="match_parent"
+        android:layout_height="400sp" />
 
     <TextView
         android:id="@+id/cryptocurrency_name"
@@ -76,7 +78,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cryptocurrency_sparkview"
+        app:layout_constraintTop_toBottomOf="@+id/cryptocurrency_chart"
         app:srcCompat="@drawable/ic_monetization" />
 
     <ImageView
@@ -137,7 +139,7 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+        android:layout_marginStart="175dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/cryptocurrency_image"
@@ -202,17 +204,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <TextView
-        android:id="@+id/cryptocurrency_spark_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="$0"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/cryptocurrency_sparkview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView20"
