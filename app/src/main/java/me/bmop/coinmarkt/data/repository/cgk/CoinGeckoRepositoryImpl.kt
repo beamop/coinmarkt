@@ -30,25 +30,9 @@ class CoinGeckoRepositoryImpl(
         }
     }
 
-    private suspend fun initCryptocurrenciesData() {
-        fetchCryptocurrencies()
-    }
-
-    private suspend fun initExchangesData() {
-        fetchExchanges()
-    }
-
-    private suspend fun fetchCryptocurrencies() {
-        coinGeckoDataSource.fetchCoinGeckoCryptocurrencies()
-    }
-
-    private suspend fun fetchExchanges() {
-        coinGeckoDataSource.fetchCoinGeckoExchanges()
-    }
-
     override suspend fun getCryptocurrencies(): LiveData<List<CoinGeckoCryptocurrenciesEntry>> {
         return withContext(Dispatchers.IO) {
-            initCryptocurrenciesData()
+            coinGeckoDataSource.fetchCoinGeckoCryptocurrencies()
             return@withContext coinGeckoCryptocurrenciesDao.getCoinGeckoCryptocurrencies()
         }
     }
@@ -61,7 +45,7 @@ class CoinGeckoRepositoryImpl(
 
     override suspend fun getExchanges(): LiveData<List<CoinGeckoExchangesEntry>> {
         return withContext(Dispatchers.IO) {
-            initExchangesData()
+            coinGeckoDataSource.fetchCoinGeckoExchanges()
             return@withContext coinGeckoExchangesDao.getCoinGeckoExchanges()
         }
     }

@@ -22,17 +22,9 @@ class CryptoControlRepositoryImpl(
         }
     }
 
-    private suspend fun initNewsData() {
-        fetchNews()
-    }
-
-    private suspend fun fetchNews() {
-        cryptoControlDataSource.fetchCryptoControlNews()
-    }
-
     override suspend fun getNews(): LiveData<List<CryptoControlNewsEntry>> {
         return withContext(Dispatchers.IO) {
-            initNewsData()
+            cryptoControlDataSource.fetchCryptoControlNews()
             return@withContext cryptoControlNewsDao.getCryptoControlNews()
         }
     }

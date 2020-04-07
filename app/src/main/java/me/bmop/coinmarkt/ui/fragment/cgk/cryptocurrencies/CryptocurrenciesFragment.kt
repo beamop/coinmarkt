@@ -55,7 +55,7 @@ class CryptocurrenciesFragment : ScopeFragment(), KodeinAware {
             if (it == null) return@Observer
 
             recycler_view.adapter =
-                CryptocurrenciesAdapter(it.toList())
+                CryptocurrenciesAdapter(it)
             recycler_view.layoutManager = LinearLayoutManager(parentFragment?.context)
             recycler_view.setHasFixedSize(true)
             group_loading.visibility = View.GONE
