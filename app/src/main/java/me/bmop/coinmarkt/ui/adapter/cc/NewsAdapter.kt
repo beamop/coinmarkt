@@ -33,7 +33,7 @@ class NewsAdapter(
 
         return NewsViewHolder(
             itemView = itemView
-        ).listen { position, type ->
+        ).listen { position, _ ->
             val item = newsList[position]
             val newsUrl = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
 

@@ -28,7 +28,7 @@ class ExchangesAdapter(
 
         return ExchangesViewHolder(
             itemView = itemView
-        ).listen { position, type ->
+        ).listen { position, _ ->
             val item = exchangesList[position]
             val exchangeUrl = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
 

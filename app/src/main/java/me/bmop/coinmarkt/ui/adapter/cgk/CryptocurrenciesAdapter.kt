@@ -29,7 +29,7 @@ class CryptocurrenciesAdapter(
 
         return CryptocurrenciesViewHolder(
             itemView = itemView
-        ).listen { position, type ->
+        ).listen { position, _ ->
             val item = cryptocurrenciesList[position]
             val intent = Intent(itemView.context, CryptocurrencyInfoActivity::class.java)
             intent.putExtra(CRYPTOCURRENCY, item)
