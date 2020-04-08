@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robinhood.spark.SparkView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cryptocurrency_item.view.*
-import listen
+import me.bmop.coinmarkt.extension.listen
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
 import me.bmop.coinmarkt.ui.activity.CryptocurrencyInfoActivity

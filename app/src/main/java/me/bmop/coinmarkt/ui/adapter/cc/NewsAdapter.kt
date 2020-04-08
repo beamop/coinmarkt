@@ -3,7 +3,6 @@ package me.bmop.coinmarkt.ui.adapter.cc
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,9 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.news_item.view.*
-import listen
+import me.bmop.coinmarkt.extension.listen
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cc.news.CryptoControlNewsEntry
-import me.bmop.coinmarkt.ui.activity.MainActivity
-import me.bmop.coinmarkt.ui.activity.NewsActivity
-import java.time.Instant
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class NewsAdapter(
     private val newsList: List<CryptoControlNewsEntry>
