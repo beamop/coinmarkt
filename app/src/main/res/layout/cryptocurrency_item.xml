@@ -12,9 +12,9 @@
 
         <ImageView
             android:id="@+id/cryptocurrency_image"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_monetization" />
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/cryptocurrency_image"
             android:text="Crypto"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_below="@id/cryptocurrency_name"
             android:layout_toEndOf="@id/cryptocurrency_image"
             android:text="symbol"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/cryptocurrency_change"
@@ -41,18 +41,20 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/cryptocurrency_symbol"
             android:layout_marginStart="5sp"
+            android:layout_alignBaseline="@id/cryptocurrency_symbol"
             android:layout_toEndOf="@id/cryptocurrency_symbol"
             android:text="change24h"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <com.robinhood.spark.SparkView
             android:id="@+id/cryptocurrency_sparkview"
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="160dp"
-            android:layout_marginEnd="90dp"
+            android:layout_marginEnd="105dp"
             android:layout_toEndOf="@+id/cryptocurrency_image" />
 
         <TextView
