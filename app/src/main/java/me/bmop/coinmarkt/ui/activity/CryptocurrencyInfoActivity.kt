@@ -1,10 +1,7 @@
 package me.bmop.coinmarkt.ui.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -44,7 +41,6 @@ class CryptocurrencyInfoActivity : AppCompatActivity() {
                 dataSet.lineWidth = 2f
                 cryptocurrency_chart.data = LineData(dataSet)
                 cryptocurrency_chart.invalidate()
-
                 cryptocurrency_low_24h.text = "$".plus(cryptocurrencyInfo.low24h)
                 cryptocurrency_high_24h.text = "$".plus(cryptocurrencyInfo.high24h)
                 cryptocurrency_name.text = cryptocurrencyInfo.name.plus(" (".plus(cryptocurrencyInfo.symbol.toUpperCase().plus(")")))
