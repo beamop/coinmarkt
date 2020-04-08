@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges
+package me.bmop.coinmarkt.ui.exchanges
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

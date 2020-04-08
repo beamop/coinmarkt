@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.activity
+package me.bmop.coinmarkt.ui.news
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

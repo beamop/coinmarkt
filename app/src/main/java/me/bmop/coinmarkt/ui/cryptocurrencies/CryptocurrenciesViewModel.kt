@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.viewmodel.cgk.cryptocurrencies
+package me.bmop.coinmarkt.ui.cryptocurrencies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

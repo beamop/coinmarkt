@@ -17,9 +17,9 @@ import me.bmop.coinmarkt.data.repository.cgk.CoinGeckoRepositoryImpl
 import me.bmop.coinmarkt.service.ApiConfiguration
 import me.bmop.coinmarkt.service.CoinGeckoApiService
 import me.bmop.coinmarkt.service.CryptoControlApiService
-import me.bmop.coinmarkt.ui.viewmodel.cc.news.NewsViewModelFactory
-import me.bmop.coinmarkt.ui.viewmodel.cgk.cryptocurrencies.CryptocurrenciesViewModelFactory
-import me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges.ExchangesViewModelFactory
+import me.bmop.coinmarkt.ui.news.NewsViewModelFactory
+import me.bmop.coinmarkt.ui.cryptocurrencies.CryptocurrenciesViewModelFactory
+import me.bmop.coinmarkt.ui.exchanges.ExchangesViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule

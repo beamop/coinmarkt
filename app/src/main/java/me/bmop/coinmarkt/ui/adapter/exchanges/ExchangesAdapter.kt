@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.adapter.cgk
+package me.bmop.coinmarkt.ui.adapter.exchanges
 
 import android.content.Intent
 import android.graphics.Color

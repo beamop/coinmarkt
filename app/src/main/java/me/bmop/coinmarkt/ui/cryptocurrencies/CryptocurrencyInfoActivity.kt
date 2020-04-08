@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.activity
+package me.bmop.coinmarkt.ui.cryptocurrencies
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cryptocurrency_info.*
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
-import me.bmop.coinmarkt.ui.adapter.cgk.CryptocurrenciesAdapter
+import me.bmop.coinmarkt.ui.adapter.cryptocurrencies.CryptocurrenciesAdapter
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList

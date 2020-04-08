@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.viewmodel.cc.news
+package me.bmop.coinmarkt.ui.news
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

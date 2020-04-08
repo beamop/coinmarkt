@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.fragment.cgk.exchanges
+package me.bmop.coinmarkt.ui.exchanges
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,10 +13,8 @@ import kotlinx.android.synthetic.main.fragment_exchanges.swipeRefreshLayout
 import kotlinx.coroutines.launch
 
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.ui.adapter.cgk.ExchangesAdapter
+import me.bmop.coinmarkt.ui.adapter.exchanges.ExchangesAdapter
 import me.bmop.coinmarkt.ui.base.ScopeFragment
-import me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges.ExchangesViewModel
-import me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges.ExchangesViewModelFactory
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance

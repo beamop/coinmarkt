@@ -1,16 +1,16 @@
-package me.bmop.coinmarkt.ui.viewmodel.cgk.exchanges
+package me.bmop.coinmarkt.ui.cryptocurrencies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import me.bmop.coinmarkt.data.repository.cgk.CoinGeckoRepository
 
-class ExchangesViewModelFactory(
+class CryptocurrenciesViewModelFactory(
     private val coinGeckoRepository: CoinGeckoRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return ExchangesViewModel(
+        return CryptocurrenciesViewModel(
             coinGeckoRepository
         ) as T
     }

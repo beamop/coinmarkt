@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.activity
+package me.bmop.coinmarkt.ui.main
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import me.bmop.coinmarkt.R
+import me.bmop.coinmarkt.ui.news.NewsActivity
 import me.bmop.coinmarkt.ui.adapter.main.SectionsPagerAdapter
 
 class MainActivity : AppCompatActivity() {

@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
             <fragment
                 android:id="@+id/newsFragment"
-                android:name="me.bmop.coinmarkt.ui.fragment.cc.NewsFragment"
+                android:name="me.bmop.coinmarkt.ui.news.NewsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </RelativeLayout>

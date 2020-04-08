@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.ui.fragment.cgk.exchanges.ExchangesFragment
-import me.bmop.coinmarkt.ui.fragment.cgk.cryptocurrencies.CryptocurrenciesFragment
+import me.bmop.coinmarkt.ui.exchanges.ExchangesFragment
+import me.bmop.coinmarkt.ui.cryptocurrencies.CryptocurrenciesFragment
 
 private val TAB_TITLES = arrayOf(
         R.string.tab_listings,

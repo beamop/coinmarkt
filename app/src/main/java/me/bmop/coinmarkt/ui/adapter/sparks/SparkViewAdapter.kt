@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.adapter.cgk
+package me.bmop.coinmarkt.ui.adapter.sparks
 
 import com.robinhood.spark.SparkAdapter
 

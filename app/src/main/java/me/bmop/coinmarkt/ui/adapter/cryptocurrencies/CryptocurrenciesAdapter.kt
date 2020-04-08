@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.adapter.cgk
+package me.bmop.coinmarkt.ui.adapter.cryptocurrencies
 
 import android.content.Intent
 import android.graphics.Color
@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.cryptocurrency_item.view.*
 import me.bmop.coinmarkt.extension.listen
 import me.bmop.coinmarkt.R
 import me.bmop.coinmarkt.data.db.entity.cgk.cryptocurrencies.CoinGeckoCryptocurrenciesEntry
-import me.bmop.coinmarkt.ui.activity.CryptocurrencyInfoActivity
+import me.bmop.coinmarkt.ui.adapter.sparks.SparkViewAdapter
+import me.bmop.coinmarkt.ui.cryptocurrencies.CryptocurrencyInfoActivity
 
 class CryptocurrenciesAdapter(
     private val cryptocurrenciesList: List<CoinGeckoCryptocurrenciesEntry>

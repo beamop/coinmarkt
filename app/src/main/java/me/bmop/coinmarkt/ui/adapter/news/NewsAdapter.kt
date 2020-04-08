@@ -1,4 +1,4 @@
-package me.bmop.coinmarkt.ui.adapter.cc
+package me.bmop.coinmarkt.ui.adapter.news
 
 import android.content.Intent
 import android.net.Uri
