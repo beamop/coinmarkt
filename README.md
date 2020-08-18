@@ -1,4 +1,4 @@
-![coinmarkt logo](img/logo.png)
+<img src="/img/logo.png" width="60%"/>
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=beamop_coinmarkt&metric=alert_status)](https://sonarcloud.io/dashboard?id=beamop_coinmarkt)
 
@@ -20,21 +20,21 @@ Or you can clone the repository manually :
 - Cryptocurrencies listing
 	- Change (24h)
 	- Sparkline
-	- Price (USD)
+	- Prices (USD)
 - Cryptocurrencies details
 	- Line chart
 	- Price (USD)
 	- Rank
 	- Volume
 	- Variation (24h)
-	- Low / Hight (24)
+	- Low / High (24)
 - Exchanges listing
 	- Trust score
 	- Change (24h)
-	- Redirect to website on click
+	- Redirect to website with one click
 - Latest news
 	- Aggregated top cryptocurrency articles
-	- Redirect to article on click
+	- Redirect to article with one click
 
 ## Architecture
 Coinmarkt is based on MVVM architecture and a repository pattern.
