@@ -1,21 +1,38 @@
-@file:Suppress("DEPRECATION")
-
 package me.bmop.coinmarkt.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import kotlinx.android.synthetic.main.activity_main.*
 import me.bmop.coinmarkt.R
-import me.bmop.coinmarkt.ui.adapter.SectionsPagerAdapter
-import me.bmop.coinmarkt.ui.exchanges.ExchangesFragment
+import me.bmop.coinmarkt.ui.news.NewsActivity
+import me.bmop.coinmarkt.ui.adapter.main.SectionsPagerAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    private var isOpen: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        fabShowMenu.setOnClickListener {
+            setupFabMenu()
+        }
+
+        fabShowNews.setOnClickListener {
+            startActivity(Intent(this, NewsActivity::class.java))
+        }
+
+        setupViewPager()
+    }
+
+    private fun setupViewPager() {
         val sectionsPagerAdapter =
             SectionsPagerAdapter(
                 this,
@@ -25,19 +42,32 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+    }
 
-        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
+    private fun setupFabMenu() {
+        val fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open)
+        val fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_close)
+        val fabRClockwise = AnimationUtils.loadAnimation(this, R.anim.rotate_clockwise)
+        val fabAClockwise = AnimationUtils.loadAnimation(this, R.anim.rotate_anticlockwise)
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
+        isOpen = if (isOpen) {
+            fabShowNews.startAnimation(fabClose)
+            fabShowMenu.startAnimation(fabRClockwise)
 
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                println(tab!!.position)
-                viewPager.currentItem = tab!!.position
-            }
-        })
+            fabShowNews.isClickable = false
+
+            false
+        } else {
+            fabShowNews.startAnimation(fabOpen)
+            fabShowMenu.startAnimation(fabAClockwise)
+
+            fabShowNews.isClickable = true
+
+            true
+        }
     }
 
 }
+
+fun Context.toast(message: CharSequence, length: Int) =
+    Toast.makeText(this, message, length).show()

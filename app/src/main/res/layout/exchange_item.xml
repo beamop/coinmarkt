@@ -12,9 +12,9 @@
 
         <ImageView
             android:id="@+id/exchange_image"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_monetization" />
 
         <TextView
@@ -22,38 +22,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/exchange_image"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:text="Exchange" />
+
+        <TextView
+            android:id="@+id/exchange_trustScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/exchange_name"
+            android:layout_toEndOf="@id/exchange_image"
+            android:text="trustScore"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/exchange_change24h"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/exchange_name"
-            android:layout_alignLeft="@id/exchange_name"
-            android:textSize="15sp"
+            android:layout_alignBaseline="@id/exchange_trustScore"
+            android:layout_marginStart="5sp"
+            android:layout_toEndOf="@id/exchange_trustScore"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:text="change24h" />
 
         <ImageView
-            android:id="@+id/exchange_sparklines"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:id="@+id/exchange_isRecommended"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginEnd="90dp"
-            android:layout_toEndOf="@+id/exchange_image"
-            android:layout_toRightOf="@id/exchange_image" />
-
-        <TextView
-            android:id="@+id/exchange_volume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            android:layout_gravity="end"
-            android:textStyle="bold"
-            android:text="volume" />
+            android:src="@drawable/ic_check_circle"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

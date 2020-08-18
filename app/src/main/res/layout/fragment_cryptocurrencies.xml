@@ -7,11 +7,11 @@
     tools:context=".ui.cryptocurrencies.CryptocurrenciesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -23,9 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.news.NewsActivity" />
+        <activity android:name=".ui.cryptocurrencies.CryptocurrencyInfoActivity" />
 
-        <service
-            android:name=".service.ApiService"
+        <service android:name=".service.CryptoControlApiService"
             android:enabled="true"
             android:exported="true" />
     </application>
